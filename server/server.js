@@ -23,6 +23,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 
+
+
 // Socket.io events here...
 
 mongoose.connect(process.env.MONGO_URI)

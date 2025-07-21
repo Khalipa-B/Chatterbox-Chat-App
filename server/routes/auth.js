@@ -5,9 +5,21 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+
+
+
+
+
+
+
+module.exports = router;
+
+
 // POST /register
-router.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+router.post('/register', (req, res) => {
+  const { username } = req.body;
+  const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  res.status(201).json({ username, token });
 
   try {
     // Check for existing user
@@ -26,9 +38,11 @@ router.post('/register', async (req, res) => {
 });
 
 // POST /login
-router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
+
+router.post('/login', (req, res) => {
+  const { username } = req.body;
+  const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '7d' });
+  res.status(200).json({ username, token });
 
   if (!user || !(await bcrypt.compare(password, user.password)))
     return res.status(401).json({ error: 'Invalid credentials' });

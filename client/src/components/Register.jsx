@@ -8,14 +8,13 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
-      await axios.post('https://chatterbox-server-0zpy.onrender.com/api/auth/register', form);
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, form);
       alert('Registered! Now login.');
       navigate('/');
     } catch (err) {
       console.error(err.response?.data || err.message);
-      alert(err.response?.data?.message || 'User exists or error occurred.');
+      alert(err.response?.data?.error || 'User exists or error occurred.');
     }
   };
 
