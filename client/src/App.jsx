@@ -1,19 +1,17 @@
-import { useEffect } from 'react';
-import { socket } from './socket';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import ChatRoom from './components/ChatRoom';
 
 function App() {
-  useEffect(() => {
-    socket.on('connect', () => {
-      console.log('🟢 Connected:', socket.id);
-    });
-
-    return () => socket.disconnect();
-  }, []);
-
   return (
-    <div className="min-h-screen flex items-center justify-center text-center bg-gray-100">
-      <h1 className="text-2xl font-bold">Chatterbox: Real-Time Chat App 🚀</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/chat" element={<ChatRoom />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
