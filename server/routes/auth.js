@@ -10,11 +10,18 @@ router.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    // Check for existing user
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: 'User already exists' });
+    }
+
     const hashed = await bcrypt.hash(password, 10);
     const user = await User.create({ username, password: hashed });
     res.status(201).json({ message: 'User created' });
   } catch (err) {
-    res.status(400).json({ error: 'User already exists' });
+    console.error("Registration error:", err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

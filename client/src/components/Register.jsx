@@ -8,12 +8,14 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post('/api/auth/register', form);
-      alert("Registered! Now login.");
+      await axios.post('https://chatterbox-server-0zpy.onrender.com/api/auth/register', form);
+      alert('Registered! Now login.');
       navigate('/');
     } catch (err) {
-      alert('User exists or error occurred.');
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.message || 'User exists or error occurred.');
     }
   };
 
@@ -21,12 +23,23 @@ export default function Register() {
     <div className="h-screen flex items-center justify-center bg-gray-100">
       <form onSubmit={handleRegister} className="bg-white p-6 rounded shadow-md w-80">
         <h2 className="text-xl font-bold mb-4">Register</h2>
-        <input className="mb-2 w-full border p-2" placeholder="Username"
-          onChange={(e) => setForm({ ...form, username: e.target.value })} />
-        <input className="mb-2 w-full border p-2" type="password" placeholder="Password"
-          onChange={(e) => setForm({ ...form, password: e.target.value })} />
+        <input
+          className="mb-2 w-full border p-2"
+          placeholder="Username"
+          value={form.username}
+          onChange={(e) => setForm({ ...form, username: e.target.value })}
+        />
+        <input
+          className="mb-2 w-full border p-2"
+          type="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
         <button className="w-full bg-green-500 text-white py-2 rounded">Register</button>
-        <p className="text-sm mt-2 text-center">Already registered? <a href="/" className="text-blue-500">Login</a></p>
+        <p className="text-sm mt-2 text-center">
+          Already registered? <a href="/" className="text-blue-500">Login</a>
+        </p>
       </form>
     </div>
   );
