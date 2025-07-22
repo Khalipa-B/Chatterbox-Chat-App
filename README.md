@@ -26,17 +26,15 @@ Users can register, log in, see who's online, send real-time messages, and see t
 
 ### Registration Page
 
-![Registration](./screenshots/register.png)
+![Registration](./client/src/screenshots/Register.png)
 
 ### Login Page
 
-![Login](./screenshots/login.png)
+![Login](./client/src/screenshots/Login.pngs)
 
 ### Chat Interface
 
-![Chat](./screenshots/chat.png)
-
-*(Add GIFs here if you prefer animated demos)*
+![Chat](./client/src/screenshots/Chat.png)
 
 ---
 
@@ -53,8 +51,8 @@ Users can register, log in, see who's online, send real-time messages, and see t
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YourUsername/Chatterbox-App.git
-cd Chatterbox-App
+git clone https://github.com/Khalipa-B/Chatterbox-Chat-App.git
+cd Chatterbox-Chat-App
 
 Setup the Server
 Navigate to the server folder:
@@ -66,8 +64,8 @@ pnpm install
 
 Create a .env file in server/ with the following variables:
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+MONGO_URI=mongodb+srv://khalipababa:khalipababa1989@chatterbox.cbs73ih.mongodb.net/chatterbox?retryWrites=true&w=majority&appName=Chatterbox
+JWT_SECRET=supersecretkey123
 
 Start the server:
 pnpm run dev
@@ -82,7 +80,7 @@ pnpm install
 # or npm install
 
 Create a .env file in client/ with the following variable:
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=https://chatterbox-server-0zpy.onrender.com/api
 
 Start the client:
 pnpm run dev
