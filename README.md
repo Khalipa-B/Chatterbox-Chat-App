@@ -30,7 +30,7 @@ Users can register, log in, see who's online, send real-time messages, and see t
 
 ### Login Page
 
-![Login](./client/src/screenshots/Login.pngs)
+![Login](./client/src/screenshots/Login.png)
 
 ### Chat Interface
 
